@@ -943,7 +943,7 @@ public class Main extends Application {
 			roleTF.setText(userComboBox.getValue().getRole().toString());
 			passwordTF.setText(userComboBox.getValue().getPassword());
 			accessLevelTF.setText("" + userComboBox.getValue().getAccesslevel());
-			if(userComboBox.getValue().getFirstName().matches(currentuser.getFirstName()) && userComboBox.getValue().getLastName().matches(currentuser.getLastName())){
+			if(userComboBox.getValue().getName().matches(currentuser.getName()) && userComboBox.getValue().getLastName().matches(currentuser.getLastName())){
 				deleteButton.setDisable(true);
 			}
 			else{
