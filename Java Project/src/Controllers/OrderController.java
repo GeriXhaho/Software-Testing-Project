@@ -1,5 +1,9 @@
 package Controllers;
 
+import FileHandlers.HeaderlessObjectOutputStream;
+import Helpers.Book;
+import Helpers.Order;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -7,10 +11,6 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-
-import FileHandlers.HeaderlessObjectOutputStream;
-import Helpers.Book;
-import Helpers.Order;
 
 public class OrderController extends ModelController<Order>{
 
@@ -66,7 +66,8 @@ public class OrderController extends ModelController<Order>{
 	
 	public Date setDate(int day, int month, int year) {
 		Calendar n = Calendar.getInstance();
-		n.set(year, month - 1, day);
+		month = month - 1;
+		n.set(year, month, day);
 		return n.getTime();
 	}
 
@@ -80,7 +81,12 @@ public class OrderController extends ModelController<Order>{
 			}
 		}
 		for (int i = 0; i < selectedlist.size(); i++) {
-			records = (records + selectedlist.get(i).getBookbought() + "\t" + selectedlist.get(i).getQuantity()  + "\t" + selectedlist.get(i).getTotal() + "\n");
+			records = records.concat(selectedlist.get(i).getBookbought());
+			records = records.concat("\t");
+			records = records.concat(String.valueOf(selectedlist.get(i).getQuantity()));
+			records = records.concat ("\t");
+			records = records.concat(String.valueOf(selectedlist.get(i).getTotal()));
+			records = records.concat("\n");
 		}
 		return records;
 	}

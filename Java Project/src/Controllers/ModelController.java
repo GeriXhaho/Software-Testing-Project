@@ -21,9 +21,10 @@ public abstract class ModelController<T> {
 
     }
     public void read(){
+		int limit = 20000;
         try(ObjectInputStream reader = new ObjectInputStream(new FileInputStream(filepath))) {
 			T obj;
-			while(true) {
+			for(int i=0;i<limit;i++) {
 				obj = (T)reader.readObject();
 				list.add(obj);
 			}

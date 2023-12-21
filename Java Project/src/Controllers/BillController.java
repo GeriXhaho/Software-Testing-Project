@@ -1,18 +1,14 @@
 package Controllers;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-
 import FileHandlers.HeaderlessObjectOutputStream;
 import Helpers.Bill;
 import Helpers.Book;
 import Roles.User;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class BillController extends ModelController<Bill> {
 	private int totalBooks = 0;
@@ -72,7 +68,8 @@ public class BillController extends ModelController<Bill> {
 
 	public Date setDate(int day, int month, int year) {
 		Calendar n = Calendar.getInstance();
-		n.set(year, month - 1, day);
+		month = month - 1;
+		n.set(year, month , day);
 		return n.getTime();
 	}
 
@@ -86,7 +83,8 @@ public class BillController extends ModelController<Bill> {
 			}
 		}
 		for (int j = 0; j < userlist.size(); j++) {
-			records = (records + userlist.get(j).getName() + "\t");
+			records = records.concat(userlist.get(j).getName());
+			records = records.concat("\t");
 			int quantity = 0;
 			float total = 0;
 			int numberOfBills = 0;
@@ -122,11 +120,12 @@ public class BillController extends ModelController<Bill> {
 		}
 		for (int i = 0; i < selectedlist.size(); i++) {
 			for (int j = 0; j < selectedlist.get(i).getBooklist().size(); j++) {
-				records = (records + selectedlist.get(i).getBooklist().get(j) + "\t"
-						+ selectedlist.get(i).getQuantitylist().get(j)
-						+ "\t"
-						+ selectedlist.get(i).getPricelist().get(j) * selectedlist.get(i).getQuantitylist().get(j)
-						+ "\n");
+				records = records.concat(selectedlist.get(i).getBooklist().get(j));
+				records = records.concat("\t");
+				records = records.concat(String.valueOf(selectedlist.get(i).getQuantitylist().get(j)));
+				records = records.concat( "\t");
+				records = records.concat(String.valueOf(selectedlist.get(i).getPricelist().get(j) * selectedlist.get(i).getQuantitylist().get(j)));
+				records = records.concat("\n");
 			}
 		}
 		return records;

@@ -1,41 +1,24 @@
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import Roles.User;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-
 import Controllers.BillController;
 import Controllers.BookController;
 import Controllers.OrderController;
 import Controllers.UserController;
 import Exceptions.InvalidCredentials;
 import Exceptions.OutOfStockException;
-import Helpers.Author;
-import Helpers.Bill;
-import Helpers.Book;
-import Helpers.Genre;
-import Helpers.Order;
-import Helpers.Role;
+import Helpers.*;
+import Roles.User;
+import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Main extends Application {
 	private Stage stage;
@@ -882,9 +865,9 @@ public class Main extends Application {
 		createButton.setOnAction(e -> {
 			Calendar cal = Calendar.getInstance();
 			int yearint = Integer.parseInt(year.getText());
-			int monthint = Integer.parseInt(year.getText());
+			int monthint = Integer.parseInt(month.getText()) - 1;
 			int dayint = Integer.parseInt(day.getText());
-			cal.set(yearint, monthint - 1, dayint);
+			cal.set(yearint, monthint , dayint);
 			tempUserController.registerUser(fNameTF.getText(), lNameTF.getText(), cal, phoneTF.getText(),
 					emailTF.getText(), Integer.parseInt(salaryTF.getText()), Role.valueOf(roleTF.getText()),
 					passwordTF.getText());

@@ -1,11 +1,13 @@
 package Roles;
 
+import Helpers.Role;
+
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Calendar;
 
-import Helpers.Role;
-
-public class User implements Serializable{ 
+public class User implements Serializable{
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private String firstName;

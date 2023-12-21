@@ -61,7 +61,7 @@ public class BookController extends ModelController<Book>{
 		String collection="";
 		for(int i=0;i<list.size();i++){
 			String book = list.get(i).StocktoString();
-			collection = (collection + book);
+			collection = (collection.concat(book) );
 		}
 		return collection;
 	}
