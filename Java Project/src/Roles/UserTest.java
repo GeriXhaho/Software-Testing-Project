@@ -21,8 +21,6 @@ public class UserTest {
 
     @Test
     @Order(1)
-
-
     void getNameTest() {
         String name = "Hoxha";
         Assertions.assertEquals(userTest.getName(), name);
