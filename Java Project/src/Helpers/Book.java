@@ -50,8 +50,7 @@ public class Book implements Serializable {
 		return sprice;
 	}
 
-	public void setSPrice(float price) {
-		this.sprice = price;
+	public void setSPrice(float price) {this.sprice = price;
 	}
 
 	public Author getAuthor() {
