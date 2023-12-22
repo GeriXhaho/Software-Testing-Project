@@ -38,4 +38,12 @@ public class Author implements Serializable {
 		return this.firstName + " " + this.lastName;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if(o instanceof Author){
+            return this.getFirstName().equals(((Author) o).getFirstName()) && this.getLastName().equals(((Author) o).getLastName()) && this.getGender() == ((Author) o).getGender();
+		}
+		return false;
+	}
+
 }
