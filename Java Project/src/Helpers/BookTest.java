@@ -12,7 +12,6 @@ public class BookTest {
     private static Book bookTest;
 
     private static ArrayList<Genre> genre = new ArrayList<>(5);
-//    private static ArrayList<Genre> genreProv = new ArrayList<>(5);
     @BeforeAll
     static void createBookTest(){
         Author authorTest = new Author("Geri", "Hoxha", Gender.FEMALE);
@@ -118,49 +117,49 @@ public class BookTest {
     }
 
     @Test
-    @Order(11)
+    @Order(13)
     void setIsbn13Test(){
         bookTest.setIsbn13("dsdasd");
         Assertions.assertEquals(bookTest.getIsbn13(), "dsdasd");
     }
 
     @Test
-    @Order(12)
+    @Order(14)
     void setPaperBackTest(){
         bookTest.setPaperback(true);
         Assertions.assertEquals(bookTest.isPaperback(), true);
     }
 
     @Test
-    @Order(13)
+    @Order(15)
     void setDescriptionTest(){
         bookTest.setDescription("sesht historia e gerit tvogle kjo");
         Assertions.assertEquals(bookTest.getDescription(), "sesht historia e gerit tvogle kjo");
     }
 
     @Test
-    @Order(14)
+    @Order(16)
     void addQuantityTest(){
         bookTest.addQuantity(1);
         Assertions.assertEquals(bookTest.getQuantity(), 21);
     }
 
     @Test
-    @Order(15)
+    @Order(17)
     void setTitleTest(){
         bookTest.setTitle("Kevi Vogel");
         Assertions.assertEquals(bookTest.getTitle(), "Kevi Vogel");
     }
 
     @Test
-    @Order(16)
+    @Order(18)
     void setSPriceTest(){
         bookTest.setSPrice(20);
         Assertions.assertEquals(bookTest.getSPrice(), 20);
     }
 
     @Test
-    @Order(17)
+    @Order(19)
     void setAuthorTest(){
         Author prov2 = new Author("Geri", "Hoxha", Gender.FEMALE);
         bookTest.setAuthor(prov2);
