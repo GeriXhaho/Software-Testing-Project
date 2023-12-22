@@ -9,22 +9,15 @@ import java.util.ArrayList;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 
 public class BookTest {
-    private static Author authorTest;
-    private static Author prov;
-    private static Author prov2;
     private static Book bookTest;
 
-//    private static ArrayList<Genre> genre = new ArrayList<>(5);
-//    private static ArrayList<Genre> genreProv = new ArrayList<>(5);
+    private static ArrayList<Genre> genre = new ArrayList<>(5);
     @BeforeAll
     static void createBookTest(){
-         authorTest= new Author("Geri", "Hoxha", Gender.FEMALE);
+        Author authorTest = new Author("Geri", "Hoxha", Gender.FEMALE);
          bookTest= new Book("ffwefwef", "Geri Vogel", "historia e gerit tvogel",  9, 8, 20, authorTest, false);
-//         genre.add(Genre.FANTASY);
-//         genre.add(Genre.ACTION);
-//         genre.add(Genre.DYSTOPIAN);
-//         genre.add(Genre.HISTORICAL);
-//         genre.add(Genre.MYSTRERY);
+         genre.add(Genre.FANTASY);
+
     }
 
 
@@ -52,7 +45,7 @@ public class BookTest {
     @Test
     @Order(4)
     void getAuthorTest(){
-        prov = new Author("Geri", "Hoxha", Gender.FEMALE);
+        Author prov = new Author("Geri", "Hoxha", Gender.FEMALE);
         Assertions.assertEquals(bookTest.getAuthor(), prov);
     }
 
@@ -93,63 +86,82 @@ public class BookTest {
     }
 
     @Test
+    @Order(8)
     void getBpriceTest(){
         float price = 8;
         Assertions.assertEquals(bookTest.getBprice(), price);
     }
 
     @Test
-    @Order(8)
+    @Order(9)
     void toStringTest(){
-        Assertions.assertEquals(bookTest.toString(), "Geri Vogel by Geri Hoxha\n");
     }
 
     @Test
-    @Order(9)
+    @Order(10)
+    void recordToStringTest(){
+        Assertions.assertEquals(bookTest.recordToString(), "Geri Vogel by Geri Hoxha");
+
+    }
+    @Test
+    @Order(11)
+    void StockToStringTest(){
+        Assertions.assertEquals(bookTest.StocktoString(), "ffwefwef Geri Vogel by Geri Hoxha x 20\n");
+
+    }
+
+    @Test
+    @Order(12)
+    void enhancedToStringTest(){
+        Assertions.assertEquals(bookTest.enhancedtoString(), "Geri Vogel by Geri Hoxha\nhistoria e gerit tvogel\nIs paperback: false\nIsbn13: ffwefwef\n[]\n20 x 9.0 leke\n");
+    }
+
+    @Test
+    @Order(13)
     void setIsbn13Test(){
         bookTest.setIsbn13("dsdasd");
         Assertions.assertEquals(bookTest.getIsbn13(), "dsdasd");
     }
 
     @Test
-    @Order(10)
+    @Order(14)
     void setPaperBackTest(){
         bookTest.setPaperback(true);
         Assertions.assertEquals(bookTest.isPaperback(), true);
     }
 
     @Test
-    @Order(11)
+    @Order(15)
     void setDescriptionTest(){
         bookTest.setDescription("sesht historia e gerit tvogle kjo");
         Assertions.assertEquals(bookTest.getDescription(), "sesht historia e gerit tvogle kjo");
     }
 
     @Test
-    @Order(12)
+    @Order(16)
     void addQuantityTest(){
         bookTest.addQuantity(1);
         Assertions.assertEquals(bookTest.getQuantity(), 21);
     }
 
     @Test
-    @Order(13)
+    @Order(17)
     void setTitleTest(){
         bookTest.setTitle("Kevi Vogel");
         Assertions.assertEquals(bookTest.getTitle(), "Kevi Vogel");
     }
 
     @Test
-    @Order(14)
+    @Order(18)
     void setSPriceTest(){
         bookTest.setSPrice(20);
         Assertions.assertEquals(bookTest.getSPrice(), 20);
     }
 
     @Test
-    @Order(15)
+    @Order(19)
     void setAuthorTest(){
-        prov2 = new Author("Geri", "Hoxha", Gender.FEMALE);
+        Author prov2 = new Author("Geri", "Hoxha", Gender.FEMALE);
         bookTest.setAuthor(prov2);
         Assertions.assertEquals(bookTest.getAuthor(), prov2);
     }
