@@ -58,15 +58,18 @@ public class BookTest {
 
 
 
-//    @Test
-//    void getGenresTest(){
-//        genreProv.add(Genre.FANTASY);
-//        genreProv.add(Genre.ACTION);
-//        genreProv.add(Genre.DYSTOPIAN);
-//        genreProv.add(Genre.HISTORICAL);
-//        genreProv.add(Genre.MYSTRERY);
-//        Assertions.assertEquals(genre, genreProv);
-//    }
+    @Test
+    void getAndAddGenreTest(){
+        ArrayList<Genre> genres = new ArrayList<>();
+        Assertions.assertEquals(genres, bookTest.getGenres());
+        genres.add(Genre.FANTASY);
+        genres.add(Genre.ACTION);
+        genres.add(Genre.DYSTOPIAN);
+        genres.add(Genre.HISTORICAL);
+        genres.add(Genre.MYSTRERY);
+        bookTest.addGenres(Genre.FANTASY, Genre.ACTION, Genre.DYSTOPIAN, Genre.HISTORICAL, Genre.MYSTRERY);
+        Assertions.assertEquals(genres, bookTest.getGenres());
+    }
 
     @Test
     @Order(5)
@@ -98,7 +101,7 @@ public class BookTest {
     @Test
     @Order(8)
     void toStringTest(){
-        Assertions.assertEquals(authorTest.toString(), "Geri Vogel by Geri Hoxha");
+        Assertions.assertEquals(bookTest.toString(), "Geri Vogel by Geri Hoxha\n");
     }
 
     @Test
