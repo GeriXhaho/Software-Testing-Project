@@ -14,8 +14,8 @@ public class BillController extends ModelController<Bill> {
 	private int totalBooks = 0;
 	private float totalSold = 0;
 
-	public BillController() {
-		super("bills");
+	public BillController(File file) {
+		super(file);
 		read();
 	}
 

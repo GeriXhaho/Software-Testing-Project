@@ -14,8 +14,8 @@ import java.util.Date;
 
 public class OrderController extends ModelController<Order>{
 
-	public OrderController() {
-		super("orders");
+	public OrderController(File file) {
+		super(file);
 		read();
 	}
 

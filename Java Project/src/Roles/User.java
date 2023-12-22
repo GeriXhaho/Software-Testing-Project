@@ -6,7 +6,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Calendar;
 
-public class User implements Serializable{
+public class User implements UserInterface,Serializable{
     @Serial
     private static final long serialVersionUID = 1L;
 

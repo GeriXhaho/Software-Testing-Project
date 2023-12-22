@@ -9,13 +9,9 @@ import java.util.ArrayList;
 public class OverwriteHandler {
 
     public static<T> void Overwrite(ArrayList<T> objectlist, File filepath) throws IOException{
-        FileOutputStream outputStream = new FileOutputStream(filepath, false);
-		ObjectOutputStream writer;
-		writer = new ObjectOutputStream(outputStream);
-		writer.writeObject(objectlist.get(0));
-        writer = new HeaderlessObjectOutputStream(outputStream);
-        for(int i=1 ;i<objectlist.size();i++){
-            writer.writeObject(objectlist.get(i));
+		ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(filepath, false));
+        for (T t : objectlist) {
+            writer.writeObject(t);
         }
 		writer.close();
     }

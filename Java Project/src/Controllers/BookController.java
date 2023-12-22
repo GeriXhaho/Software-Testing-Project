@@ -12,8 +12,8 @@ import Helpers.Book;
 import Helpers.Gender;
 
 public class BookController extends ModelController<Book>{
-    public BookController(){
-        super("books");
+    public BookController(File file){
+        super(file);
         read();
     }
 
