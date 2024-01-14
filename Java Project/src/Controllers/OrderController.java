@@ -3,6 +3,7 @@ package Controllers;
 import FileHandlers.HeaderlessObjectOutputStream;
 import Helpers.Book;
 import Helpers.Order;
+import Helpers.OrderInterface;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class OrderController extends ModelController<Order>{
+public class OrderController extends ModelController<OrderInterface>{
 
 	public OrderController(File file) {
 		super(file);
@@ -20,7 +21,7 @@ public class OrderController extends ModelController<Order>{
 	}
 
 
-	public boolean writeOrdertoFile(Order newOrder) throws Exception {
+	public boolean writeOrdertoFile(OrderInterface newOrder) throws Exception {
 		if (!checkifOrderexists(newOrder.getDate())) {
 			try {
 				File orderFile = new File(filepath);
@@ -44,7 +45,7 @@ public class OrderController extends ModelController<Order>{
 	}
 
 	public boolean checkifOrderexists(Date date) {
-		for (Order order : list) {
+		for (OrderInterface order : list) {
 			if (order.getDate().compareTo(date) == 0) {
 				return true;
 			}
@@ -73,7 +74,7 @@ public class OrderController extends ModelController<Order>{
 
 	public String printBookRecords(Date start, Date end) {
 		String records = "";
-		ArrayList<Order> selectedlist = new ArrayList<>();
+		ArrayList<OrderInterface> selectedlist = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getDate().getTime() > start.getTime()
 					&& list.get(i).getDate().getTime() < end.getTime()) {
@@ -93,7 +94,7 @@ public class OrderController extends ModelController<Order>{
 
 	public float totalBookExpenses(Date start, Date end){
 		float income=0;
-		ArrayList<Order> selectedlist = new ArrayList<>();
+		ArrayList<OrderInterface> selectedlist = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getDate().getTime() > start.getTime()
 					&& list.get(i).getDate().getTime() < end.getTime()) {

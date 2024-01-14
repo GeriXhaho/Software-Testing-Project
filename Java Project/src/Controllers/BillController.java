@@ -2,15 +2,17 @@ package Controllers;
 
 import FileHandlers.HeaderlessObjectOutputStream;
 import Helpers.Bill;
+import Helpers.BillInterface;
 import Helpers.Book;
 import Roles.User;
+import Roles.UserInterface;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BillController extends ModelController<Bill> {
+public class BillController extends ModelController<BillInterface> {
 	private int totalBooks = 0;
 	private float totalSold = 0;
 
@@ -19,7 +21,7 @@ public class BillController extends ModelController<Bill> {
 		read();
 	}
 
-	public boolean writeBilltoFile(Bill newBill) {
+	public boolean writeBilltoFile(BillInterface newBill) {
 		try {
 			if (newBill.getTotal() == 0)
 				return false;
@@ -73,9 +75,9 @@ public class BillController extends ModelController<Bill> {
 		return n.getTime();
 	}
 
-	public String printLibrarianRecords(Date start, Date end, ArrayList<User> userlist) {
+	public String printLibrarianRecords(Date start, Date end, ArrayList<UserInterface> userlist) {
 		String records = "";
-		ArrayList<Bill> selectedlist = new ArrayList<>();
+		ArrayList<BillInterface> selectedlist = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getBilldate().getTime() > start.getTime()
 					&& list.get(i).getBilldate().getTime() < end.getTime()) {
@@ -111,7 +113,7 @@ public class BillController extends ModelController<Bill> {
 
 	public String printBookRecords(Date start, Date end) {
 		String records = "";
-		ArrayList<Bill> selectedlist = new ArrayList<>();
+		ArrayList<BillInterface> selectedlist = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getBilldate().getTime() > start.getTime()
 					&& list.get(i).getBilldate().getTime() < end.getTime()) {
@@ -133,7 +135,7 @@ public class BillController extends ModelController<Bill> {
 
 	public float totalbookIncome(Date start, Date end) {
 		float income = 0;
-		ArrayList<Bill> selectedlist = new ArrayList<>();
+		ArrayList<BillInterface> selectedlist = new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
 			if (list.get(i).getBilldate().getTime() > start.getTime()
 					&& list.get(i).getBilldate().getTime() < end.getTime()) {

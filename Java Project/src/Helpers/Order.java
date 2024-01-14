@@ -3,7 +3,7 @@ package Helpers;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Order implements Serializable{
+public class Order implements OrderInterface,Serializable{
     private int id;
     private Date orderDate;
     private float orderTotal;

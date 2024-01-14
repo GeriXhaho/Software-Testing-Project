@@ -4,7 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Book implements Serializable {
+public class Book implements BookInterface,Serializable {
 	@Serial
 	private static final long serialVersionUID = 5296705482940410483L;
 	private String isbn13;

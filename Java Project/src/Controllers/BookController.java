@@ -9,16 +9,17 @@ import java.util.ArrayList;
 import FileHandlers.HeaderlessObjectOutputStream;
 import Helpers.Author;
 import Helpers.Book;
+import Helpers.BookInterface;
 import Helpers.Gender;
 
-public class BookController extends ModelController<Book>{
+public class BookController extends ModelController<BookInterface>{
     public BookController(File file){
         super(file);
         read();
     }
 
 
-    public boolean writeBooktoFile(Book newBook) {
+    public boolean writeBooktoFile(BookInterface newBook) {
         if(checkifBookexists(newBook.getIsbn13(), newBook.getQuantity())){
             System.out.print("Book already Exists");
 			return false;
@@ -41,7 +42,7 @@ public class BookController extends ModelController<Book>{
 	}
 
     public boolean checkifBookexists(String isbn, int quantity){
-        for(Book book : list){
+        for(BookInterface book : list){
             if(book.getIsbn13().matches(isbn)){
 				return true;
             }
@@ -65,7 +66,7 @@ public class BookController extends ModelController<Book>{
 		}
 		return collection;
 	}
-    public ArrayList<Book> getBookList(){
+    public ArrayList<BookInterface> getBookList(){
         return list;
     }
 	
