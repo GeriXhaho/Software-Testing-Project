@@ -23,4 +23,10 @@ public interface BillInterface {
     int getID();
 
     String getBillText();
+
+    void addBillText(String booktranslated);
+
+    void addBook(String s);
+
+    void addTotal(float sPrice, int i);
 }

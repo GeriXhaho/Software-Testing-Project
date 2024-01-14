@@ -73,4 +73,19 @@ public class BillMock implements BillInterface, Serializable {
     public String getBillText() {
         return "No text";
     }
+
+    @Override
+    public void addBillText(String booktranslated) {
+
+    }
+
+    @Override
+    public void addBook(String s) {
+
+    }
+
+    @Override
+    public void addTotal(float sPrice, int i) {
+
+    }
 }

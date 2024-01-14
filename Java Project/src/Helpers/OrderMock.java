@@ -28,4 +28,14 @@ public class OrderMock implements OrderInterface, Serializable {
     public float getTotal() {
         return 1500;
     }
+
+    @Override
+    public void addTotal(float total) {
+
+    }
+
+    @Override
+    public void addQuantity(int i) {
+
+    }
 }

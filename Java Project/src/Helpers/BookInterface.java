@@ -14,4 +14,8 @@ public interface BookInterface {
     Author getAuthor();
 
     float getBprice();
+
+    String recordToString();
+
+    void addQuantity(int i);
 }

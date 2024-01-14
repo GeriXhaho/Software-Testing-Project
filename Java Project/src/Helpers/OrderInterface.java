@@ -10,5 +10,9 @@ public interface OrderInterface {
     int getQuantity();
 
     float getTotal();
+
+    void addTotal(float total);
+
+    void addQuantity(int i);
     //methods to be added here
 }

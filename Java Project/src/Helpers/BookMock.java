@@ -49,4 +49,14 @@ public class BookMock implements BookInterface, Serializable {
     public float getBprice() {
         return 150;
     }
+
+    @Override
+    public String recordToString() {
+        return null;
+    }
+
+    @Override
+    public void addQuantity(int i) {
+
+    }
 }
