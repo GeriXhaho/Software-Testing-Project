@@ -2,6 +2,7 @@ package Controllers;
 
 import FileHandlers.HeaderlessObjectOutputStream;
 import Helpers.Book;
+import Helpers.BookInterface;
 import Helpers.Order;
 import Helpers.OrderInterface;
 
@@ -53,7 +54,7 @@ public class OrderController extends ModelController<OrderInterface>{
 		return false;
 	}
 
-	public float calculateTotal(Book book, int quantity) {
+	public float calculateTotal(BookInterface book, int quantity) {
 		return book.getBprice() * quantity;
 	}
 

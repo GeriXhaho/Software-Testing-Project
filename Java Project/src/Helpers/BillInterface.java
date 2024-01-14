@@ -19,4 +19,8 @@ public interface BillInterface {
     String getBillName();
 
     int getQuantity();
+
+    int getID();
+
+    int getBillText();
 }

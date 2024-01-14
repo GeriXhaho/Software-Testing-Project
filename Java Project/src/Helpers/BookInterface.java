@@ -6,4 +6,12 @@ public interface BookInterface {
     int getQuantity();
 
     String StocktoString();
+
+    String getTitle();
+
+    String getSPrice();
+
+    Object getAuthor();
+
+    float getBprice();
 }

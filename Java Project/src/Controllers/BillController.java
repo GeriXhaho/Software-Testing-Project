@@ -4,6 +4,7 @@ import FileHandlers.HeaderlessObjectOutputStream;
 import Helpers.Bill;
 import Helpers.BillInterface;
 import Helpers.Book;
+import Helpers.BookInterface;
 import Roles.User;
 import Roles.UserInterface;
 
@@ -41,7 +42,7 @@ public class BillController extends ModelController<BillInterface> {
 		}
 	}
 
-	public boolean writeBilltoTxt(Bill newBill) {
+	public boolean writeBilltoTxt(BillInterface newBill) {
 		try {
 			int billid = newBill.getID();
 			File billFile = new File(
@@ -55,7 +56,7 @@ public class BillController extends ModelController<BillInterface> {
 		}
 	}
 
-	public String billtoString(Book book, int quantity) {
+	public String billtoString(BookInterface book, int quantity) {
 		return (book.getTitle() + " by " + book.getAuthor().toString() + "\t\t\t" + quantity + " x "
 				+ book.getSPrice() + " leke\n");
 	}
@@ -100,7 +101,7 @@ public class BillController extends ModelController<BillInterface> {
 			totalBooks += quantity;
 			totalSold += total;
 			records = (records + numberOfBills + "\t\t" + quantity + "\t\t\t" + total + " $\n");
-			if (selectedlist.size() == 0) {
+			if (selectedlist.isEmpty()) {
 				records = "";
 			}
 		}

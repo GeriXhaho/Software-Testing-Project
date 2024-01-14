@@ -20,7 +20,7 @@ public class BookController extends ModelController<BookInterface>{
 
 
     public boolean writeBooktoFile(BookInterface newBook) {
-        if(checkifBookexists(newBook.getIsbn13(), newBook.getQuantity())){
+        if(checkifBookexists(newBook.getIsbn13())){
             System.out.print("Book already Exists");
 			return false;
         }
@@ -41,7 +41,7 @@ public class BookController extends ModelController<BookInterface>{
 		}
 	}
 
-    public boolean checkifBookexists(String isbn, int quantity){
+    public boolean checkifBookexists(String isbn){
         for(BookInterface book : list){
             if(book.getIsbn13().matches(isbn)){
 				return true;
