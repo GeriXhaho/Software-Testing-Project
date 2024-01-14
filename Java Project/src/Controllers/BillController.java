@@ -23,21 +23,14 @@ public class BillController extends ModelController<BillInterface> {
 	}
 
 	public boolean writeBilltoFile(BillInterface newBill) {
-		try {
-			if (newBill.getTotal() == 0)
-				return false;
-			File billFile = new File(filepath);
-			FileOutputStream outputStream = new FileOutputStream(billFile, true);
-			ObjectOutputStream writer;
-			if (billFile.length() > 0)
-				writer = new HeaderlessObjectOutputStream(outputStream);
-			else
-				writer = new ObjectOutputStream(outputStream);
+		if (newBill.getTotal() == 0)
+			return false;
+		try(ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(objectSaveFile, true))){
 			writer.writeObject(newBill);
 			writer.close();
 			list.add(newBill);
 			return true;
-		} catch (IOException ex) {
+		} catch (Exception ex) {
 			return false;
 		}
 	}

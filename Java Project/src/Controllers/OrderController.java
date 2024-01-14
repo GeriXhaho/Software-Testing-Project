@@ -24,19 +24,12 @@ public class OrderController extends ModelController<OrderInterface>{
 
 	public boolean writeOrdertoFile(OrderInterface newOrder) throws Exception {
 		if (!checkifOrderexists(newOrder.getDate())) {
-			try {
-				File orderFile = new File(filepath);
-				FileOutputStream outputStream = new FileOutputStream(orderFile, true);
-				ObjectOutputStream writer;
-				if (orderFile.length() > 0)
-					writer = new HeaderlessObjectOutputStream(outputStream);
-				else
-					writer = new ObjectOutputStream(outputStream);
+			try(ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(objectSaveFile, true))){
 				writer.writeObject(newOrder);
 				writer.close();
 				list.add(newOrder);
 				return true;
-			} catch (IOException ex) {
+			} catch (Exception ex) {
 				return false;
 			}
 		}

@@ -1,27 +1,31 @@
 package Helpers;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 public class OrderMock implements OrderInterface, Serializable {
-
+    Date orderDate;
+    public OrderMock(Date date){
+        this.orderDate = date;
+    }
     @Override
     public Date getDate() {
-        return null;
+        return this.orderDate;
     }
 
     @Override
     public String getBookbought() {
-        return null;
+        return "Geri Kevi Hoxha";
     }
 
     @Override
     public int getQuantity() {
-        return 0;
+        return 15;
     }
 
     @Override
     public float getTotal() {
-        return 0;
+        return 1500;
     }
 }

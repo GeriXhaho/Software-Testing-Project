@@ -9,9 +9,9 @@ public interface BookInterface {
 
     String getTitle();
 
-    String getSPrice();
+    float getSPrice();
 
-    Object getAuthor();
+    Author getAuthor();
 
     float getBprice();
 }

@@ -22,5 +22,5 @@ public interface BillInterface {
 
     int getID();
 
-    int getBillText();
+    String getBillText();
 }

@@ -24,19 +24,12 @@ public class BookController extends ModelController<BookInterface>{
             System.out.print("Book already Exists");
 			return false;
         }
-		try {
-			File bookFile = new File(filepath);
-			FileOutputStream outputStream = new FileOutputStream(bookFile, true);
-			ObjectOutputStream writer;
-			if (bookFile.length() > 0)
-				writer = new HeaderlessObjectOutputStream(outputStream);
-			else
-				writer = new ObjectOutputStream(outputStream); 
+		try(ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(objectSaveFile, true))){
 			writer.writeObject(newBook);
 			writer.close();
 			list.add(newBook);
 			return true;
-		} catch(IOException ex) {
+		} catch(Exception ex) {
 			return false;
 		}
 	}
