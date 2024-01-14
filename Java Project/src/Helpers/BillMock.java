@@ -10,7 +10,7 @@ public class BillMock implements BillInterface, Serializable {
     Date billdate;
     String billName;
 
-    float total=1500;
+    public float total=1500;
 
 
 

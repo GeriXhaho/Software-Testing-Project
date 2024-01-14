@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="mockito.kotlin" type="repository">
+  <library name="Mockito" type="repository">
     <properties maven-id="org.mockito.kotlin:mockito-kotlin:5.2.1" />
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/mockito/kotlin/mockito-kotlin/5.2.1/mockito-kotlin-5.2.1.jar!/" />
