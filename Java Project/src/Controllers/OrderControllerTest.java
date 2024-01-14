@@ -98,7 +98,7 @@ class OrderControllerTest {
         Calendar cal = Calendar.getInstance();
         cal.set(2024, Calendar.JANUARY, 14);
         Date date =  cal.getTime();
-        assertEquals(date,orderControllerTest.orderDate());
+        assertEquals(0, date.compareTo(orderControllerTest.orderDate()));
     }
 
     @Test
@@ -122,15 +122,23 @@ class OrderControllerTest {
         Date date4 =  cal.getTime();
         cal.set(2024, Calendar.JANUARY, 15);
         Date date5 =  cal.getTime();
+        cal.set(2024, Calendar.JANUARY, 11);
+        Date dateBegin =  cal.getTime();
+        cal.set(2024, Calendar.JANUARY, 15);
+        Date dateEnd =  cal.getTime();
 
         try {
             OrderMock testOrder1 = new OrderMock(date1);
             OrderMock testOrder2 = new OrderMock(date2);
             OrderMock testOrder3 = new OrderMock(date3);
+            OrderMock testOrder4 = new OrderMock(dateBegin);
+            OrderMock testOrder5 = new OrderMock(dateEnd);
 
             orderControllerTest.writeOrdertoFile(testOrder1);
             orderControllerTest.writeOrdertoFile(testOrder2);
             orderControllerTest.writeOrdertoFile(testOrder3);
+            orderControllerTest.writeOrdertoFile(testOrder4);
+            orderControllerTest.writeOrdertoFile(testOrder5);
 
             assertEquals("Geri Kevi Hoxha\t15\t1500.0\n" +
                     "Geri Kevi Hoxha\t15\t1500.0\n" +
@@ -153,15 +161,23 @@ class OrderControllerTest {
         Date date4 =  cal.getTime();
         cal.set(2024, Calendar.JANUARY, 15);
         Date date5 =  cal.getTime();
+        cal.set(2024, Calendar.JANUARY, 11);
+        Date dateBegin =  cal.getTime();
+        cal.set(2024, Calendar.JANUARY, 15);
+        Date dateEnd =  cal.getTime();
 
         try {
             OrderMock testOrder1 = new OrderMock(date1);
             OrderMock testOrder2 = new OrderMock(date2);
             OrderMock testOrder3 = new OrderMock(date3);
+            OrderMock testOrder4 = new OrderMock(dateBegin);
+            OrderMock testOrder5 = new OrderMock(dateEnd);
 
             orderControllerTest.writeOrdertoFile(testOrder1);
             orderControllerTest.writeOrdertoFile(testOrder2);
             orderControllerTest.writeOrdertoFile(testOrder3);
+            orderControllerTest.writeOrdertoFile(testOrder4);
+            orderControllerTest.writeOrdertoFile(testOrder5);
 
             assertEquals(4500.0,orderControllerTest.totalBookExpenses(date4, date5));
         } catch(Exception e) {
