@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 import Controllers.BillController;
 import Controllers.BookController;
 import Controllers.OrderController;
