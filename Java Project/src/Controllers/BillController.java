@@ -39,7 +39,7 @@ public class BillController extends ModelController<BillInterface> {
 		try {
 			int billid = newBill.getID();
 			File billFile = new File(
-					"D:\\Programming\\Java Project\\Java Project\\src\\Files\\Printed Bills\\Bill_" + billid + ".txt");
+					"D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\Printed Bills\\Bill_" + billid + ".txt");
 			PrintWriter writer = new PrintWriter(billFile);
 			writer.write(newBill.getBillText());
 			writer.close();

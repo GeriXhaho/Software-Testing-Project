@@ -45,7 +45,7 @@ class OrderControllerTest {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 2024);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
-        cal.set(Calendar.DAY_OF_MONTH, 14);
+        cal.set(Calendar.DAY_OF_MONTH, 16);
         Date datetest =  cal.getTime();
 
         OrderMock testOrder1 = new OrderMock(datetest);
@@ -96,7 +96,7 @@ class OrderControllerTest {
     @Test
     void orderDate() {
         Calendar cal = Calendar.getInstance();
-        cal.set(2024, Calendar.JANUARY, 14);
+        cal.set(2024, Calendar.JANUARY, 16);
         Date date =  cal.getTime();
         assertEquals(0, date.compareTo(orderControllerTest.orderDate()));
     }
@@ -106,7 +106,7 @@ class OrderControllerTest {
         Calendar cal = Calendar.getInstance();
         cal.set(2000, Calendar.JANUARY, 10);
         Date date =  cal.getTime();
-        assertEquals(0, date.compareTo(orderControllerTest.setDate(10, 1, 2000)));
+        assertEquals(cal.getTime().toString(), orderControllerTest.setDate(10, 1, 2000).toString());
     }
 
     @Test

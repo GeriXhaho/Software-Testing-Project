@@ -1,6 +1,6 @@
-Bill_ID 0					Sun Feb 19 23:38:39 CET 2023
+Bill_ID 0					Mon Jan 15 22:20:46 CET 2024
 
-Katror by Noam Chomsky			25 x 20000.0 leke
+Titelo la testelo by Fyodor Dostoevsky			10 x 1399.0 leke
 
-Total:	500000.0
+Total:	13990.0
 Issued by: Kevin

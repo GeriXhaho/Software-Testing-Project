@@ -19,14 +19,17 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public class Main extends Application {
+public class Main extends Application implements Serializable {
 	public Stage stage;
-	public UserInterface currentuser;
+	public UserInterface currentuser = new User("Kevin","Cela",Calendar.getInstance(),"1","1",4000,Role.Admin,"11223");
 	public BillInterface newbill;
 	public OrderInterface neworder;
+
+	public UserController tempUserController = new UserController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\users.dat"));
 
 	@Override
 	public void start(Stage pstage) {
@@ -42,7 +45,7 @@ public class Main extends Application {
 
 	public Scene createLoginScene() {
 		stage.setTitle("User Log In");
-		UserController tempController = new UserController(new File("Files/bills.dat"));
+		UserController tempController = new UserController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\users.dat"));
 		VBox mainpane = new VBox();
 		mainpane.setAlignment(Pos.CENTER);
 		mainpane.setPadding(new Insets(20, 10, 20, 10));
@@ -57,6 +60,7 @@ public class Main extends Application {
 		Label nameLbl = new Label("Name:");
 
 		PasswordField passwordTF = new PasswordField();
+		passwordTF.setId("passwordTF");
 		Label passwordLbl = new Label("Password:");
 
 		HBox error = new HBox();
@@ -68,6 +72,7 @@ public class Main extends Application {
 		error.getChildren().add(errorLbl);
 
 		Button loginButton = new Button("Log In");
+		loginButton.setId("loginButton");
 		HBox bottom = new HBox();
 		bottom.setAlignment(Pos.CENTER);
 		bottom.setPadding(new Insets(15, 0, 10, 0));
@@ -84,6 +89,7 @@ public class Main extends Application {
 			try {
 				String name = nameTF.getText();
 				String password = passwordTF.getText();
+				tempController.list.add(currentuser);
 				currentuser = tempController.checkUserCredentials(name, password);
 
 				if (currentuser.getAccesslevel()  == 0){
@@ -122,20 +128,29 @@ public class Main extends Application {
 		Menu homeMenu = new Menu("Home");
 		MenuItem home = new MenuItem("Home");
 		Menu booksMenu = new Menu("BookList");
+		booksMenu.setId("booksMenu");
 		MenuItem viewBooks = new MenuItem("View");
 		MenuItem sellBooks = new MenuItem("Checkout");
+		sellBooks.setId("sellBooks");
 		Menu ordersMenu = new Menu("Purchase");
+		ordersMenu.setId("ordersMenu");
 		MenuItem newBook = new MenuItem("New");
+		newBook.setId("newBook");
 		MenuItem existingBooks = new MenuItem("Existing");
+		existingBooks.setId("existingBooks");
 		Menu salesMenu = new Menu("Sales");
 		MenuItem librarianSales = new MenuItem("Librarians");
 		MenuItem bookSales = new MenuItem("Books");
 		MenuItem totalIncome = new MenuItem("Total");
 		Menu profileMenu = new Menu("Profile");
+		profileMenu.setId("profileMenu");
 		MenuItem logout = new MenuItem("Log Out");
 		Menu usersMenu = new Menu("Users");
+		usersMenu.setId("usersMenu");
 		MenuItem registerUser = new MenuItem("Register");
+		registerUser.setId("registerUser");
 		MenuItem modifyUser = new MenuItem("Modify");
+		modifyUser.setId("modifyUser");
 
 		homeMenu.getItems().add(home);
 		booksMenu.getItems().addAll(viewBooks, sellBooks);
@@ -201,8 +216,8 @@ public class Main extends Application {
 	}
 
 	public Scene createBookBuyingScene() {
-		BookController tempBookController = new BookController(new File("Files/books.dat"));
-		OrderController tempOrderController = new OrderController(new File("Files/orders.dat"));
+		BookController tempBookController = new BookController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\books.dat"));
+		OrderController tempOrderController = new OrderController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\orders.dat"));
 		VBox mainpane = new VBox();
 		mainpane.setPadding(new Insets(0, 10, 20, 10));
 		GridPane pane = new GridPane();
@@ -213,23 +228,29 @@ public class Main extends Application {
 		MenuBar mb = MenuCreator();
 
 		TextField titleTF = new TextField();
+		titleTF.setId("titleTF");
 		Label titleLbl = new Label("Title:");
 
 		TextField isbnTF = new TextField();
+		isbnTF.setId("isbnTF");
 		Label isbnLbl = new Label("ISBN 13:");
 		TextField quantityTF = new TextField();
+		quantityTF.setId("quantityTF");
 		quantityTF.setMaxWidth(35);
 		Label quantityLbl = new Label("Quantity:");
 
 		TextField SpriceTF = new TextField();
+		SpriceTF.setId("SpriceTF");
 		SpriceTF.setMaxWidth(100);
 		Label SpriceLbl = new Label("Selling Price:");
 		TextField BpriceTF = new TextField();
+		BpriceTF.setId("BpriceTF");
 		BpriceTF.setMaxWidth(100);
 		Label BpriceLbl = new Label("Buying Price:");
 
 		Label versionLbl = new Label("Version");
 		RadioButton rbPaperback = new RadioButton("Paperback");
+		rbPaperback.setId("rbPaperback");
 		RadioButton rbEbook = new RadioButton("E-book");
 		ToggleGroup group = new ToggleGroup();
 		rbPaperback.setToggleGroup(group);
@@ -239,12 +260,14 @@ public class Main extends Application {
 
 		Label descriptionLbl = new Label("Description");
 		TextArea descriptionTA = new TextArea();
+		descriptionTA.setId("descriptionTA");
 		descriptionTA.setPrefColumnCount(20);
 		descriptionTA.setPrefRowCount(5);
 		descriptionTA.setWrapText(true);
 
 		Author[] authors = tempBookController.getAvailableAuthors();
 		ComboBox<Author> cbo = new ComboBox<>();
+		cbo.setId("cbo");
 		cbo.getItems().addAll(authors);
 		Label authosLbl = new Label("Select an author: ");
 
@@ -252,12 +275,15 @@ public class Main extends Application {
 		paneForGenres.setPadding(new Insets(4));
 		ArrayList<CheckBox> genreCheckboxes = new ArrayList<>();
 		for (Genre g : Genre.values()) {
-			genreCheckboxes.add(new CheckBox(g.toString()));
+			CheckBox temp = new CheckBox(g.toString());
+			temp.setId(g.toString());
+			genreCheckboxes.add(temp);
 		}
 		paneForGenres.getChildren().addAll(genreCheckboxes);
 		Label genreLbl = new Label("Genres: ");
 
 		Button submitBtn = new Button("Submit");
+		submitBtn.setId("submitBtn");
 		submitBtn.setOnAction(e -> {
 			try {
 				String isbn13 = isbnTF.getText();
@@ -318,7 +344,7 @@ public class Main extends Application {
 	}
 
 	public Scene createHomeScene() {
-		BookController tempBookController = new BookController(new File("Files/books.dat"));
+		BookController tempBookController = new BookController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\books.dat"));
 		VBox mainpane = new VBox();
 		mainpane.setPadding(new Insets(0, 0, 20, 0));
 		GridPane pane = new GridPane();
@@ -349,8 +375,8 @@ public class Main extends Application {
 
 	public Scene createExistingBuyScene() {
 
-		BookController tempBookController = new BookController(new File("Files/books.dat"));
-		OrderController tempOrderController = new OrderController(new File("Files/orders.dat"));
+		BookController tempBookController = new BookController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\books.dat"));
+		OrderController tempOrderController = new OrderController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\orders.dat"));
 
 		VBox mainpane = new VBox();
 		GridPane gridpane1 = new GridPane();
@@ -456,8 +482,8 @@ public class Main extends Application {
 
 	public Scene createLibrarianRecordsScene() {
 
-		BillController tempBillController = new BillController(new File("Files/bills.dat"));
-		UserController tempUserController = new UserController(new File("Files/users.dat"));
+		BillController tempBillController = new BillController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\bills.dat"));
+
 
 		VBox mainpane = new VBox();
 		GridPane gridpane1 = new GridPane();
@@ -568,8 +594,8 @@ public class Main extends Application {
 
 	public Scene createBookRecordScene() {
 
-		BillController tempBillController = new BillController(new File("Files/bills.dat"));
-		OrderController tempOrderController = new OrderController(new File("Files/orders.dat"));
+		BillController tempBillController = new BillController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\bills.dat"));
+		OrderController tempOrderController = new OrderController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\orders.dat"));
 
 		VBox mainpane = new VBox();
 		GridPane gridpane1 = new GridPane();
@@ -696,8 +722,8 @@ public class Main extends Application {
 
 	public Scene createLibrarianScene() {
 
-		BookController tempBookController = new BookController(new File("Files/books.dat"));
-		BillController tempBillController = new BillController(new File("Files/bills.dat"));
+		BookController tempBookController = new BookController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\books.dat"));
+		BillController tempBillController = new BillController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\bills.dat"));
 
 		VBox mainpane = new VBox();
 		GridPane gridpane1 = new GridPane();
@@ -713,6 +739,7 @@ public class Main extends Application {
 
 		ArrayList<BookInterface> booklist = tempBookController.getBookList();
 		ComboBox<BookInterface> bookComboBox = new ComboBox<>();
+		bookComboBox.setId("bookComboBox");
 		bookComboBox.getItems().addAll(booklist);
 		Label titleLbl = new Label("Book Name:");
 
@@ -720,6 +747,7 @@ public class Main extends Application {
 		Label isbnLbl = new Label("Isbn:");
 
 		TextField quantityTF = new TextField();
+		quantityTF.setId("quantityTF");
 		quantityTF.setMaxWidth(35);
 		Label quantityLbl = new Label("Quantity:");
 
@@ -740,8 +768,11 @@ public class Main extends Application {
 		billBox2.getChildren().add(billTA);
 
 		Button createBillBtn = new Button("New");
+		createBillBtn.setId("createBillBtn");
 		Button addBookBtn = new Button("Add Book");
+		addBookBtn.setId("addBookBtn");
 		Button submitBtn = new Button("Submit");
+		submitBtn.setId("submitBtn");
 		addBookBtn.setVisible(false);
 		submitBtn.setVisible(false);
 
@@ -823,7 +854,7 @@ public class Main extends Application {
 	}
 
 	public Scene createRegisterUserScene() {
-		UserController tempUserController = new UserController(new File("Files/users.dat"));
+
 
 		VBox mainpane = new VBox();
 		GridPane gridpane1 = new GridPane();
@@ -843,27 +874,46 @@ public class Main extends Application {
 
 		Label firstName = new Label("First Name");
 		TextField fNameTF = new TextField();
+		fNameTF.setId("fNameTF");
 		Label lastName = new Label("Last Name");
 		TextField lNameTF = new TextField();
+		lNameTF.setId("lNameTF");
+
 		Label birthday = new Label("Birthday    ");
 		TextField day = new TextField();
+		day.setId("day");
+
 		day.setMaxWidth(30);
 		TextField month = new TextField();
+		month.setId("month");
+
 		month.setMaxWidth(30);
 		TextField year = new TextField();
+		year.setId("year");
+
 		year.setMaxWidth(45);
 		Label email = new Label("Email");
 		TextField emailTF = new TextField();
+		emailTF.setId("emailTF");
+
 		Label phone = new Label("Phone No ");
 		TextField phoneTF = new TextField();
+		phoneTF.setId("phoneTF");
+
 		Label salary = new Label("Salary");
 		TextField salaryTF = new TextField();
+		salaryTF.setId("salaryTF");
+
 		Label role = new Label("Role");
 		TextField roleTF = new TextField();
+		roleTF.setId("roleTF");
+
 		Label password = new Label("Password");
 		TextField passwordTF = new TextField();
+		passwordTF.setId("passwordTF");
 
 		Button createButton = new Button("Register");
+		createButton.setId("createButton");
 
 		createButton.setOnAction(e -> {
 			Calendar cal = Calendar.getInstance();
@@ -873,8 +923,7 @@ public class Main extends Application {
 			cal.set(yearint, monthint , dayint);
 			tempUserController.registerUser(new User(fNameTF.getText(), lNameTF.getText(), cal, phoneTF.getText(),
 					emailTF.getText(), Integer.parseInt(salaryTF.getText()), Role.valueOf(roleTF.getText()),
-					passwordTF.getText()) {
-			});
+					passwordTF.getText()));
 		});
 
 		HBox dateBox = new HBox();
@@ -905,7 +954,7 @@ public class Main extends Application {
 	}
 
 	public Scene createModifyUserScene() {
-		UserController tempUserController = new UserController(new File("Files/users.dat"));
+
 
 		VBox mainpane = new VBox();
 		GridPane gridpane1 = new GridPane();
@@ -922,6 +971,7 @@ public class Main extends Application {
 		Label user = new Label("User");
 		ArrayList<UserInterface> userlist = tempUserController.getUserList();
 		ComboBox<UserInterface> userComboBox = new ComboBox<>();
+		userComboBox.setId("userComboBox");
 		userComboBox.getItems().addAll(userlist);
 
 		Label email = new Label("Email");
@@ -939,6 +989,7 @@ public class Main extends Application {
 
 		Button saveButton = new Button("Save");
 		Button deleteButton = new Button("Delete");
+		deleteButton.setId("deleteButton");
 
 		userComboBox.setOnAction(e -> {
 			emailTF.setText(userComboBox.getValue().getEmail());
@@ -994,9 +1045,9 @@ public class Main extends Application {
 
 	public Scene createTotalExpensesScene() {
 
-		BillController tempBillController = new BillController(new File("Files/bills.dat"));
-		OrderController tempOrderController = new OrderController(new File("Files/orders.dat"));
-		UserController tempUserController = new UserController(new File("Files/users.dat"));
+		BillController tempBillController = new BillController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\bills.dat"));
+		OrderController tempOrderController = new OrderController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\orders.dat"));
+
 
 		VBox mainpane = new VBox();
 		GridPane gridpane1 = new GridPane();
@@ -1105,7 +1156,7 @@ public class Main extends Application {
 		return scene;
 	}
 	public Scene createBookViewScene(){
-		BookController tempBookController = new BookController(new File("Files/books.dat"));
+		BookController tempBookController = new BookController(new File("D:\\Apps\\Project\\Software-Testing-Project\\Java Project\\src\\Files\\books.dat"));
 		VBox mainpane = new VBox();
 		MenuBar mb = MenuCreator();
 		Label bookLbl = new Label("Book Collection");

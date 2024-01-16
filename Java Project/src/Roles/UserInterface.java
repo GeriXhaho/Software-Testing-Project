@@ -3,6 +3,9 @@ package Roles;
 import Helpers.Role;
 import net.bytebuddy.agent.builder.AgentBuilder;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 public interface UserInterface {
     public String getName();
     public String getPassword();

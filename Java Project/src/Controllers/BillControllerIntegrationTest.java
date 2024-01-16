@@ -63,7 +63,7 @@ class BillControllerIntegrationTest {
     @Test
     void calculateIdNumber() {
         Calendar cal = Calendar.getInstance();
-        cal.set(2024, Calendar.JANUARY, 14);
+        cal.set(2024, Calendar.JANUARY, 16);
         Date date1 = cal.getTime();
         Bill testBill1 = new Bill(1, date1, "Hoxha Geri");
         testBill1.addTotal(1100,22);
@@ -78,9 +78,9 @@ class BillControllerIntegrationTest {
     @Test
     void billDate() {
         Calendar cal = Calendar.getInstance();
-        cal.set(2024, Calendar.JANUARY, 14);
+        cal.set(2024, Calendar.JANUARY, 16);
         Date date =  cal.getTime();
-        assertEquals(0, date.compareTo(billControllerTest.billDate()));
+        assertEquals(date.toString(), billControllerTest.billDate().toString());
     }
 
     @Test

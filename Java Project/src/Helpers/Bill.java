@@ -1,9 +1,12 @@
 package Helpers;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Bill implements BillInterface,Serializable{
+    @Serial
+    private static final long serialVersionUID = 2L;
     private int id;
     private Date billdate;
     private float totalamount;

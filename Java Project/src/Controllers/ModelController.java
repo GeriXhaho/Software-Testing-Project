@@ -5,7 +5,7 @@ import FileHandlers.OverwriteHandler;
 import java.io.*;
 import java.util.ArrayList;
 
-public abstract class ModelController<T> {
+public abstract class ModelController<T> implements Serializable{
 
 	protected File objectSaveFile;
     public ArrayList<T> list;
@@ -20,17 +20,17 @@ public abstract class ModelController<T> {
     }
     public void read(){
 		int limit = 20000;
+
         try(ObjectInputStream reader = new ObjectInputStream(new FileInputStream(objectSaveFile.getPath()))) {
-			T obj;
-            list = new ArrayList<>();
 			for(int i=0;i<limit;i++) {
-				obj = (T)reader.readObject();
-				list.add(obj);
+				Object obj = reader.readObject();
+				list.add((T)obj);
+
 			}
         } catch (EOFException e) {
 			System.out.println("Read all the data from file "+filename);
 		} catch (Exception e) {
-			System.out.print(e);
+			e.printStackTrace();
 		}
 
     }

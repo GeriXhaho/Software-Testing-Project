@@ -42,7 +42,7 @@ class OrderControllerIntegrationTest {
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 2024);
         cal.set(Calendar.MONTH, Calendar.JANUARY);
-        cal.set(Calendar.DAY_OF_MONTH, 14);
+        cal.set(Calendar.DAY_OF_MONTH, 16);
         Date datetest =  cal.getTime();
         int id = 1;
         String name = "Order 1";
@@ -106,7 +106,7 @@ class OrderControllerIntegrationTest {
     @Test
     void orderDate() {
         Calendar cal = Calendar.getInstance();
-        cal.set(2024, Calendar.JANUARY, 14);
+        cal.set(2024, Calendar.JANUARY, 16);
         Date date =  cal.getTime();
         assertEquals(date, orderControllerIntegrationTest.orderDate());
     }

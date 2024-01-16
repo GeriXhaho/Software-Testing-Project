@@ -1,4 +1,4 @@
-Bill_ID 0					Mon Jan 15 22:20:46 CET 2024
+Bill_ID 1					Tue Jan 16 18:46:59 CET 2024
 
 Titelo la testelo by Fyodor Dostoevsky			10 x 1399.0 leke
 
