@@ -5,6 +5,7 @@ import Helpers.Role;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class User implements UserInterface,Serializable{
     @Serial
@@ -40,6 +41,26 @@ public class User implements UserInterface,Serializable{
         this.password = password;
         this.role = role;
         this.accesslevel = role.ordinal();
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return salary == user.salary &&
+                accesslevel == user.accesslevel &&
+                Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(birthday, user.birthday) &&
+                Objects.equals(phone, user.phone) &&
+                Objects.equals(email, user.email) &&
+                role == user.role &&
+                Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, birthday, phone, email, salary, role, password, accesslevel);
     }
 
     public String getName(){

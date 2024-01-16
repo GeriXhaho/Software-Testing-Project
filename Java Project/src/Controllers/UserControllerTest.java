@@ -25,7 +25,7 @@ class UserControllerTest {
             testfile.createNewFile();
         }
         catch(Exception e){
-            //no i dont want to
+            //No, I don't want to
         }
 
         userControllerTest = new UserController(testfile);
