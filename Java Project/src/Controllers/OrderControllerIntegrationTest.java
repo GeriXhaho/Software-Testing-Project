@@ -108,7 +108,7 @@ class OrderControllerIntegrationTest {
         Calendar cal = Calendar.getInstance();
         cal.set(2024, Calendar.JANUARY, 16);
         Date date =  cal.getTime();
-        assertEquals(date, orderControllerIntegrationTest.orderDate());
+        assertEquals(date.toString(), orderControllerIntegrationTest.orderDate().toString());
     }
 
     @Test

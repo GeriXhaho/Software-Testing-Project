@@ -24,7 +24,7 @@ class BillControllerIntegrationTest {
         count++;
         try{
 
-            testfile = new File("testBills"+ count +".dat");
+            testfile = new File("testBillsIntegrated"+ count +".dat");
             testfile.createNewFile();
         }
         catch(Exception e){
@@ -36,7 +36,7 @@ class BillControllerIntegrationTest {
     static void deleteTestFile(){
         for(int i=0;i<=count;i++){
             System.out.println(count);
-            File deleteFile = new File("testBills"+ (i+1) +".dat");
+            File deleteFile = new File("testBillsIntegrated"+ (i+1) +".dat");
             deleteFile.deleteOnExit();
         }
     }
